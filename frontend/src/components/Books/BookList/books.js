@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate'
-import ProductTerm from '../ProductTerm/productTerm';
 import {Link} from 'react-router-dom';
-import eshopRepository from "../../../repository/eshopRepository";
+import BookTerm from "../BookTerm/bookTerm";
 
 class Books extends React.Component {
 
