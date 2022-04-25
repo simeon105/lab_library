@@ -8,8 +8,6 @@ class Books extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log("Simeon")
-
         this.state = {
             page: 0,
             size: 2
@@ -17,12 +15,17 @@ class Books extends React.Component {
     }
 
     render() {
+        console.log("Ljubovhce")
+
         const offset = this.state.size * this.state.page;
         const nextPageOffset = offset + this.state.size;
         const pageCount = Math.ceil(this.props.books.length / this.state.size);
         const books = this.getBooksPage(offset, nextPageOffset);
         console.log(books, pageCount)
 
+        console.log("Simeon e boss")
+
+        console.log(books)
         return (
             <div className={"container mm-4 mt-5"}>
                 <div className={"row"}>
@@ -30,10 +33,14 @@ class Books extends React.Component {
                         <table className={"table table-striped"}>
                             <thead>
                             <tr>
+                                <th scope={"col"}>Name</th>
+                                <th scope={"col"}>Category</th>
+                                <th scope={"col"}>Author</th>
+                                <th scope={"col"}>AvailableCopies</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {books}
+                            {books.map(book => <tr>{book}</tr>)}
                             </tbody>
                         </table>
                     </div>
@@ -72,12 +79,13 @@ class Books extends React.Component {
         console.log(offset, nextPageOffset)
         return this.props.books.map((term, index) => {
             return (
-                <BookTerm term={term} onDelete={this.props.onDelete} onEdit={this.props.onEdit}/>
-            );
+            <BookTerm term={term} onDelete={this.props.onDelete} onEdit={this.props.onEdit}/>
+        );
         }).filter((book, index) => {
             return index >= offset && index < nextPageOffset;
         })
     }
+
 }
 
 export default Books;

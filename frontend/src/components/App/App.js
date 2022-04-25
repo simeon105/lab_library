@@ -22,12 +22,14 @@ class App extends Component {
                     <div className="container">
                         safasfa
                         <Routes>
-                        <Route path={"/books"} exact render={() =>
-                            <Books books={this.state.books}
-                                      onDelete={this.deleteBook}
-                                      onEdit={this.getBook}/>}/>
+                            <Route path={"/books"} element={<Books books={this.state.books}
+                                                                   onDelete={this.deleteBook}
+                                                                   onEdit={this.getBook}/>}/>
+
                         </Routes>
-                        <Navigate to={"/books"}/>
+
+                        dsgsd
+
                     </div>
                 </main>
             </Router>
