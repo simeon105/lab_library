@@ -4,13 +4,15 @@ import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom
 import LibraryService from "../../repository/libraryRepository";
 import Header from "../Header/header";
 import Books from "../Books/BookList/books";
+import BookAdd from "../Books/ProductAdd/productAdd";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            books: []
+            books: [],
+            categories: []
         }
     }
 
@@ -27,6 +29,9 @@ class App extends Component {
                             <Route path={"/books"} element={<Books books={this.state.books}
                                                                    onDelete={this.deleteBook}
                                                                    onEdit={this.getBook}/>}/>
+                            <Route path={"/books/add"} element={<BookAdd categories={this.state.categories}
+                                                                               onAddBook={this.addBook}/>}/>
+
 
                         </Routes>
 
@@ -41,7 +46,17 @@ class App extends Component {
     }
 
     fetchData = () => {
+        this.loadCategories();
         this.loadBooks();
+    }
+
+    loadCategories = () => {
+        LibraryService.fetchCategories()
+            .then((data) => {
+                this.setState({
+                    categories: data.data
+                })
+            })
     }
 
     loadBooks = () => {

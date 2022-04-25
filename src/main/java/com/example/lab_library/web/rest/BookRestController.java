@@ -2,10 +2,13 @@ package com.example.lab_library.web.rest;
 
 import com.example.lab_library.model.Book;
 import com.example.lab_library.model.dto.BookDto;
+import com.example.lab_library.model.enumerations.Category;
 import com.example.lab_library.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -17,6 +20,11 @@ public class BookRestController {
 
     public BookRestController(BookService bookService) {
         this.bookService = bookService;
+    }
+
+    @GetMapping("/categories")
+    private List<Category> findAllCategories() {
+        return Arrays.asList(Category.values());
     }
 
     @GetMapping
