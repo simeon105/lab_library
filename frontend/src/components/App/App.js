@@ -1,7 +1,8 @@
 import './App.css';
 import React, {Component} from "react";
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Navigate, Route} from 'react-router-dom';
 import LibraryService from "../../repository/libraryRepository";
+import Header from "../Header/header";
 
 class App extends Component {
 
@@ -18,7 +19,7 @@ class App extends Component {
                 <Header/>
                 <main>
                     <div className="container">
-                        <Redirect to={"/books"}/>
+                        <Navigate to={"/books"}/>
                     </div>
                 </main>
             </Router>
