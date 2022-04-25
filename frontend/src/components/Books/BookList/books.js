@@ -10,7 +10,7 @@ class Books extends React.Component {
 
         this.state = {
             page: 0,
-            size: 2
+            size: 5
         }
     }
 
@@ -40,7 +40,7 @@ class Books extends React.Component {
                             </tr>
                             </thead>
                             <tbody>
-                            {books.map(book => <tr>{book}</tr>)}
+                            {books}
                             </tbody>
                         </table>
                     </div>

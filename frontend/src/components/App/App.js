@@ -20,15 +20,15 @@ class App extends Component {
                 <Header/>
                 <main>
                     <div className="container">
-                        safasfa
                         <Routes>
+                            <Route path={"/"} element={<Books books={this.state.books}
+                                                                   onDelete={this.deleteBook}
+                                                                   onEdit={this.getBook}/>}/>
                             <Route path={"/books"} element={<Books books={this.state.books}
                                                                    onDelete={this.deleteBook}
                                                                    onEdit={this.getBook}/>}/>
 
                         </Routes>
-
-                        dsgsd
 
                     </div>
                 </main>
