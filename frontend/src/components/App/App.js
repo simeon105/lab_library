@@ -1,8 +1,9 @@
 import './App.css';
 import React, {Component} from "react";
-import {BrowserRouter as Router, Navigate, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import LibraryService from "../../repository/libraryRepository";
 import Header from "../Header/header";
+import Books from "../Books/BookList/books";
 
 class App extends Component {
 
@@ -19,6 +20,13 @@ class App extends Component {
                 <Header/>
                 <main>
                     <div className="container">
+                        safasfa
+                        <Routes>
+                        <Route path={"/books"} exact render={() =>
+                            <Books books={this.state.books}
+                                      onDelete={this.deleteBook}
+                                      onEdit={this.getBook}/>}/>
+                        </Routes>
                         <Navigate to={"/books"}/>
                     </div>
                 </main>
@@ -57,7 +65,7 @@ class App extends Component {
             });
     }
 
-    getProduct = (id) => {
+    getBook = (id) => {
         LibraryService.getBook(id)
             .then((data) => {
                 this.setState({

@@ -8,6 +8,8 @@ class Books extends React.Component {
     constructor(props) {
         super(props);
 
+        console.log("Simeon")
+
         this.state = {
             page: 0,
             size: 2
@@ -28,10 +30,6 @@ class Books extends React.Component {
                         <table className={"table table-striped"}>
                             <thead>
                             <tr>
-                                <th scope={"col"}>Name</th>
-                                <th scope={"col"}>Category</th>
-                                <th scope={"col"}>Author</th>
-                                <th scope={"col"}>Available copies</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -76,7 +74,7 @@ class Books extends React.Component {
             return (
                 <BookTerm term={term} onDelete={this.props.onDelete} onEdit={this.props.onEdit}/>
             );
-        }).filter((product, index) => {
+        }).filter((book, index) => {
             return index >= offset && index < nextPageOffset;
         })
     }
