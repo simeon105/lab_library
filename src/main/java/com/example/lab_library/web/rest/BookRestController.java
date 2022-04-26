@@ -62,7 +62,7 @@ public class BookRestController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PutMapping("/mark/{id}")
+    @PostMapping("/mark/{id}")
     public ResponseEntity markById(@PathVariable Long id) {
         return this.bookService.markAsTaken(id)
                 .map(book -> ResponseEntity.ok().body(book))

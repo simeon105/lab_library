@@ -33,7 +33,7 @@ const LibraryService = {
         return axios.get(`/books/${id}`);
     },
     markBook: (id) => {
-        return axios.put(`/books/mark/${id}`);
+        return axios.post(`/books/mark/${id}`);
     }
 }
 

@@ -19,8 +19,8 @@ const bookTerm = (props) => {
                     Edit
                 </Link>
                 <a title={"Mark As Taken"} className={"btn btn-success"}
-                   onClick={() => props.onmark(props.term.id)}>
-                    Delete
+                   onClick={() => props.onMark(props.term.id)}>
+                    Mark As Taken
                 </a>
             </td>
 

@@ -110,6 +110,7 @@ public class BookServiceImpl implements BookService {
             book.setAvailableCopies(book.getAvailableCopies() - 1);
         }
 
+        this.bookRepository.save(book);
         return Optional.of(book);
     }
 }
