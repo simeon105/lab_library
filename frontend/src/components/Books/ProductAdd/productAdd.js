@@ -25,7 +25,9 @@ const BookAdd = (props) => {
         const author = formData.author;
         const availableCopies = formData.availableCopies;
 
+        console.log("Evicka e najubava")
         props.onAddBook(name, category, author, availableCopies);
+        console.log("Sime e bossy")
         history.push("/books");
     }
 
@@ -55,10 +57,21 @@ const BookAdd = (props) => {
                     <div className="form-group">
                         <label>Author</label>
                         <select name="author" className="form-control" onChange={handleChange}>
-                            {props.categories.map((term) =>
-                                <option value={term}>{term}</option>
+                            {props.authors.map((term) =>
+                                <option value={term.id}>{term.name}</option>
                             )}
                         </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="availableCopies">Available copies</label>
+                        <input type="number"
+                               className="form-control"
+                               id="availableCopies"
+                               name="availableCopies"
+                               required
+                               placeholder="Enter available copies"
+                               onChange={handleChange}
+                        />
                     </div>
                     <button id="submit" type="submit" className="btn btn-primary">Submit</button>
                 </form>

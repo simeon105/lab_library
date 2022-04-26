@@ -1,6 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
-import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LibraryService from "../../repository/libraryRepository";
 import Header from "../Header/header";
 import Books from "../Books/BookList/books";
@@ -12,7 +12,8 @@ class App extends Component {
         super(props);
         this.state = {
             books: [],
-            categories: []
+            categories: [],
+            authors: []
         }
     }
 
@@ -30,6 +31,7 @@ class App extends Component {
                                                                    onDelete={this.deleteBook}
                                                                    onEdit={this.getBook}/>}/>
                             <Route path={"/books/add"} element={<BookAdd categories={this.state.categories}
+                                                                         authors={this.state.authors}
                                                                                onAddBook={this.addBook}/>}/>
 
 
@@ -46,8 +48,18 @@ class App extends Component {
     }
 
     fetchData = () => {
+        this.loadAuthors();
         this.loadCategories();
         this.loadBooks();
+    }
+
+    loadAuthors = () => {
+        LibraryService.fetchAuthors()
+            .then((data) => {
+                this.setState({
+                    authors: data.data
+                })
+            })
     }
 
     loadCategories = () => {

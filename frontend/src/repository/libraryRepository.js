@@ -7,10 +7,14 @@ const LibraryService = {
     fetchCategories: () => {
         return axios.get("/books/categories")
     },
+    fetchAuthors: () => {
+        return axios.get("/authors")
+    },
     deleteBook: (id) => {
         return axios.delete(`/books/delete/${id}`);
     },
     addBook: (name, category, author, availableCopies) => {
+        console.log("Kikoooo")
         return axios.post("/books/add", {
             "name": name,
             "category": category,
