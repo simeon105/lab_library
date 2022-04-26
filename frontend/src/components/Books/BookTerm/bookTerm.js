@@ -18,11 +18,10 @@ const bookTerm = (props) => {
                       to={`/books/edit/${props.term.id}`}>
                     Edit
                 </Link>
-                <Link className={"btn btn-success ml-2"}
-                      onClick={() => props.onEdit(props.term.id)}
-                      to={`/books/mark/${props.term.id}`}>
-                    Mark As Taken
-                </Link>
+                <a title={"Mark As Taken"} className={"btn btn-success"}
+                   onClick={() => props.onmark(props.term.id)}>
+                    Delete
+                </a>
             </td>
 
         </tr>

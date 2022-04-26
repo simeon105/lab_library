@@ -14,20 +14,19 @@ const LibraryService = {
         return axios.delete(`/books/delete/${id}`);
     },
     addBook: (name, category, author, availableCopies) => {
-        console.log("Kikoooo")
         return axios.post("/books/add", {
             "name": name,
-            "category": category,
-            "author": author,
-            "availableCopies": availableCopies
+            "category": parseInt(category),
+            "author": parseInt(author),
+            "availableCopies": parseInt(availableCopies)
         });
     },
     editBook: (id, name, category, author, availableCopies) => {
         return axios.put(`/books/edit/${id}`, {
             "name": name,
-            "category": category,
-            "author": author,
-            "availableCopies": availableCopies
+            "category": parseInt(category),
+            "author": parseInt(author),
+            "availableCopies": parseInt(availableCopies)
         });
     },
     getBook: (id) => {

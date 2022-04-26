@@ -14,7 +14,7 @@ public interface BookService {
 
     Optional<Book> findById(Long id);
 
-    Optional<Book> save(String name, Category category, Long author, int availableCopies);
+    Optional<Book> save(String name, Category category, long author, int availableCopies);
 
     Optional<Book> save(BookDto bookDto);
 

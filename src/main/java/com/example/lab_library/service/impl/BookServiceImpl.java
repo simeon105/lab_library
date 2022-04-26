@@ -38,10 +38,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Optional<Book> save(String name, Category category, Long authorId, int availableCopies) {
+    public Optional<Book> save(String name, Category category, long authorId, int availableCopies) {
         Author author = this.authorRepository.findById(authorId)
                 .orElseThrow(() -> new AuthorNotFoundException(authorId));
 
+        this.bookRepository.deleteByName(name);
         Book book = new Book(name, category, author, availableCopies);
         this.bookRepository.save(book);
 
@@ -50,7 +51,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Optional<Book> save(BookDto bookDto) {
-        Book book = new Book(bookDto.getName(), bookDto.getCategory(), bookDto.getAuthor(), bookDto.getAvailableCopies());
+        Author author = this.authorRepository.findById(bookDto.getAuthor())
+                .orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthor()));
+
+        Book book = new Book(bookDto.getName(), bookDto.getCategory(), author, bookDto.getAvailableCopies());
 
         this.bookRepository.save(book);
         return Optional.of(book);
@@ -81,7 +85,11 @@ public class BookServiceImpl implements BookService {
 
         book.setName(bookDto.getName());
         book.setCategory(bookDto.getCategory());
-        book.setAuthor(bookDto.getAuthor());
+
+        Author author = this.authorRepository.findById(bookDto.getAuthor())
+                .orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthor()));
+
+        book.setAuthor(author);
         book.setAvailableCopies(bookDto.getAvailableCopies());
 
         this.bookRepository.save(book);

@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LibraryService from "../../repository/libraryRepository";
 import Header from "../Header/header";
 import Books from "../Books/BookList/books";
-import BookAdd from "../Books/ProductAdd/productAdd";
+import BookAdd from "../Books/BookAdd/bookAdd";
+import BookEdit from "../Books/BookEdit/bookEdit";
 
 class App extends Component {
 
@@ -13,7 +14,8 @@ class App extends Component {
         this.state = {
             books: [],
             categories: [],
-            authors: []
+            authors: [],
+            selectedBook: {}
         }
     }
 
@@ -33,6 +35,11 @@ class App extends Component {
                             <Route path={"/books/add"} element={<BookAdd categories={this.state.categories}
                                                                          authors={this.state.authors}
                                                                                onAddBook={this.addBook}/>}/>
+                            <Route path={"/books/edit/:id"} element={<BookEdit categories={this.state.categories}
+                                                                               authors={this.state.authors}
+                                                                               onEditBook={this.editBook}
+                                                                               book={this.state.selectedBook}/>}/>
+
 
 
                         </Routes>
@@ -87,6 +94,13 @@ class App extends Component {
             });
     }
 
+    markBook = (id) => {
+        LibraryService.markBook(id)
+            .then(() => {
+                this.loadBooks();
+            })
+    }
+
     addBook = (name, category, author, availableCopies) => {
         LibraryService.addBook(name, category, author, availableCopies)
             .then(() => {
@@ -103,7 +117,7 @@ class App extends Component {
             })
     }
 
-    editProduct = (id, name, category, author, availableCopies) => {
+    editBook = (id, name, category, author, availableCopies) => {
         LibraryService.editBook(id, name, category, author, availableCopies)
             .then(() => {
                 this.loadBooks();
